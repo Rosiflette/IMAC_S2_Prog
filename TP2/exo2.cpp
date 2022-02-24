@@ -8,7 +8,19 @@ MainWindow* w=nullptr;
 void insertionSort(Array& toSort){
 	Array& sorted=w->newArray(toSort.size());
 
+
 	// insertion sort from toSort to sorted
+
+//    Array* result = new Array();
+//    result[0] = toSort[0];
+//    for (int n = 1; n < toSort.size(); ++n) {
+//        if(toSort[n] < result[result.size()] ){
+//            while()
+//        }
+//        else{
+
+//        }
+//    }
 	
 	toSort=sorted; // update the original array
 }
