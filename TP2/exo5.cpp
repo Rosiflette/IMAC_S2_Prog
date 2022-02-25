@@ -4,31 +4,73 @@
 
 MainWindow* w=nullptr;
 
-void merge(Array& first, Array& second, Array& result);
+Array& merge(Array& first, Array& second);
 
-void splitAndMerge(Array& origin)
+Array& splitAndMerge(Array& origin)
 {
 	// stop statement = condition + return (return stop the function even if it does not return anything)
+    if(origin.size() == 1){
+        return origin;
+    }
 
 	// initialisation
 	Array& first = w->newArray(origin.size()/2);
 	Array& second = w->newArray(origin.size()-first.size());
 	
-	// split
+    // split
 
-	// recursiv splitAndMerge of lowerArray and greaterArray
+    for (int i = 0; i<first.size();i++) {
+        first[i] = origin[i];
+    }
+    for(int i = 0; i < second.size(); i++){
+        second[i] = origin[i+first.size()];
+    }
 
-	// merge
+    first = splitAndMerge(first);
+    second = splitAndMerge(second);
+
+    return merge(first, second);
+
+
+
 }
 
-void merge(Array& first, Array& second, Array& result)
+Array& merge(Array& first, Array& second)
 {
+    Array& result = w->newArray(first.size()+second.size());
+
+    int i = 0;
+    int j = 0;
+
+    while(i < first.size() && j < second.size()){
+        if(first[i]<second[j]){
+            result[i+j] = first[i];
+            i++;
+        }
+        else{
+            result[i+j] = second[j];
+            j++;
+        }
+
+    }
+
+    while(i< first.size()){
+        result[i+j] = first[i];
+        i++;
+    }
+
+    while(j<second.size()){
+        result[i+j] = second[j];
+        j++;
+    }
+
+    return result;
 
 }
 
 void mergeSort(Array& toSort)
 {
-    splitAndMerge(toSort);
+    toSort = splitAndMerge(toSort);
 }
 
 int main(int argc, char *argv[])

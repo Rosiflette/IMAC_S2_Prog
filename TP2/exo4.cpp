@@ -25,13 +25,11 @@ void recursivQuickSort(Array& toSort, int size)
         if(toSort[i]<pivot){
             lowerArray[lowerSize] = toSort[i];
             lowerSize++;
-
         }
         else{
             greaterArray[greaterSize] = toSort[i];
             greaterSize++;
         }
-
     }
 
 
