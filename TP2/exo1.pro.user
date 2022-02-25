@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.11.0, 2022-02-25T10:34:53. -->
+<!-- Written by QtCreator 4.11.0, 2022-02-25T14:42:41. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{67e603b3-4344-46e4-aa5e-09d72bb58819}</value>
+  <value type="QByteArray">{f7e92453-27b7-4318-aa63-2e07015acbae}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -64,7 +64,7 @@
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{649a7bc6-cb7f-4bc5-ad01-5836e0284735}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{c8c063db-5513-40ef-a4fb-a20b4a4bdbf9}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>

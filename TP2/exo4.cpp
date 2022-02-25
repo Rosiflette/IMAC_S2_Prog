@@ -9,49 +9,53 @@ MainWindow* w=nullptr;
 void recursivQuickSort(Array& toSort, int size)
 {
 	// stop statement = condition + return (return stop the function even if it does not return anything)
-	
+    if(size == 0){
+        return;
+    }
 	Array& lowerArray = w->newArray(size);
 	Array& greaterArray= w->newArray(size);
 	int lowerSize = 0, greaterSize = 0; // effectives sizes
 
-//    int pivot = toSort[0];
+
 
 //	// split
 
-//    for (int i = 1; i < size; i++) {
-//        if(toSort[i]<pivot){
-//            lowerArray[lowerSize] = toSort[i];
-//            lowerSize++;
+    int pivot = toSort[0];
+    for (int i = 1; i < size; i++) {
+        if(toSort[i]<pivot){
+            lowerArray[lowerSize] = toSort[i];
+            lowerSize++;
 
-//        }
-//        else{
-//            greaterArray[greaterSize] = toSort[i];
-//            greaterSize++;
-//        }
+        }
+        else{
+            greaterArray[greaterSize] = toSort[i];
+            greaterSize++;
+        }
 
-//    }
-
-//    recursivQuickSort(lowerArray, lowerSize);
-//    recursivQuickSort(greaterArray, greaterSize);
-
-//    for(int i = 0; i< lowerSize; i++){
-//        toSort[i] = lowerArray[i];
-//    }
-//    for(int j = lowerSize; j < greaterSize; j++){
-//        toSort[j] = greaterArray[greaterSize-j];
-//    }
+    }
 
 
+    // recursiv sort of lowerArray and greaterArray
+    recursivQuickSort(lowerArray, lowerSize);
+    recursivQuickSort(greaterArray, greaterSize);
+
+    toSort[lowerSize] = pivot;
 
 
-	
+    // merge
+
+    for(int i = 0; i < lowerSize; i++){
+        toSort[i] = lowerArray[i];
+    }
+    for(int j = 0; j < greaterSize; j++){
+        toSort[lowerSize+1+j] = greaterArray[j];
+    }
 
 
-	// recursiv sort of lowerArray and greaterArray
 
 
 
-	// merge
+
 }
 
 void quickSort(Array& toSort){
