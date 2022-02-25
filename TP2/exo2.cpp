@@ -10,22 +10,21 @@ void insertionSort(Array& toSort){
 
 
 	// insertion sort from toSort to sorted
-
-//    result[0] = toSort[0];
-//    for (int n = 1; n < toSort.size(); ++n) {
-//        //printf(" hellllllllllllllllllllllloooooooooooooooooooo %d \n", result[result.size()]);
-//        if(toSort[n] < result[result.size()-1] ){
-//            int i = result.size();
-//            while(i > 0 && toSort[n] < result[i-1]){
-//                result[i] = result[i-1];
-//                i--;
-//            }
-//            result[i] = toSort[n];
-//        }
-//        else{
-//            result[result.size()] = toSort[n];
-//        }
-//    }
+    int i;
+    result[0]=toSort[0];
+    for (int n = 1; n < toSort.size(); ++n) {
+        if(toSort[n] < result[n-1] ){
+            i = n-1;
+            while(i >= 0 && toSort[n] < result[i]){
+                result[i+1] = result[i];
+                i--;
+            }
+            result[i+1] = toSort[n];
+        }
+        else{
+            result[n] = toSort[n];
+        }
+    }
 	
     toSort=result; // update the original array
 }
