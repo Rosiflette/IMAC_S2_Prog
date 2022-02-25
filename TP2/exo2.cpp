@@ -6,23 +6,27 @@
 MainWindow* w=nullptr;
 
 void insertionSort(Array& toSort){
-	Array& sorted=w->newArray(toSort.size());
+    Array& result=w->newArray(toSort.size());
 
 
 	// insertion sort from toSort to sorted
-
-//    Array* result = new Array();
-//    result[0] = toSort[0];
-//    for (int n = 1; n < toSort.size(); ++n) {
-//        if(toSort[n] < result[result.size()] ){
-//            while()
-//        }
-//        else{
-
-//        }
-//    }
+    int i;
+    result[0]=toSort[0];
+    for (int n = 1; n < toSort.size(); ++n) {
+        if(toSort[n] < result[n-1] ){
+            i = n-1;
+            while(i >= 0 && toSort[n] < result[i]){
+                result[i+1] = result[i];
+                i--;
+            }
+            result[i+1] = toSort[n];
+        }
+        else{
+            result[n] = toSort[n];
+        }
+    }
 	
-	toSort=sorted; // update the original array
+    toSort=result; // update the original array
 }
 
 int main(int argc, char *argv[])

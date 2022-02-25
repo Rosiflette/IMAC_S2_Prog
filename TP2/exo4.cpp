@@ -14,14 +14,48 @@ void recursivQuickSort(Array& toSort, int size)
 	Array& greaterArray= w->newArray(size);
 	int lowerSize = 0, greaterSize = 0; // effectives sizes
 
-	// split
+//    int pivot = toSort[0];
+
+//	// split
+
+//    for (int i = 1; i < size; i++) {
+//        if(toSort[i]<pivot){
+//            lowerArray[lowerSize] = toSort[i];
+//            lowerSize++;
+
+//        }
+//        else{
+//            greaterArray[greaterSize] = toSort[i];
+//            greaterSize++;
+//        }
+
+//    }
+
+//    recursivQuickSort(lowerArray, lowerSize);
+//    recursivQuickSort(greaterArray, greaterSize);
+
+//    for(int i = 0; i< lowerSize; i++){
+//        toSort[i] = lowerArray[i];
+//    }
+//    for(int j = lowerSize; j < greaterSize; j++){
+//        toSort[j] = greaterArray[greaterSize-j];
+//    }
+
+
+
+
 	
+
+
 	// recursiv sort of lowerArray and greaterArray
+
+
 
 	// merge
 }
 
 void quickSort(Array& toSort){
+
 	recursivQuickSort(toSort, toSort.size());
 }
 
