@@ -5,6 +5,8 @@
 MainWindow* w = nullptr;
 using std::size_t;
 
+
+
 /**
  * @brief define indexMin and indexMax as the first and the last index of toSearch
  * @param array array of int to process
@@ -15,7 +17,40 @@ using std::size_t;
 void binarySearchAll(Array& array, int toSearch, int& indexMin, int& indexMax)
 {
 	// do not use increments, use two different binary search loop
-    indexMin = indexMax = -1;
+    int start = 0;
+    int end = array.size();
+
+    while(start < end){
+        int milieu = (start +end)/2;
+        if(toSearch > array[milieu]){
+            start = milieu +1;
+        }
+        else if(toSearch < array[milieu]){
+            end = milieu;
+        }
+        else{
+            indexMin = milieu;
+            indexMax = milieu;
+            end = milieu;
+        }
+    }
+
+    start = (0 +array.size())/2;
+    end = array.size();
+    while(start < end){
+        int milieu = (start +end)/2;
+        if(toSearch > array[milieu]){
+            start = milieu +1;
+        }
+        else if(toSearch < array[milieu]){
+            end = milieu;
+        }
+        else{
+            indexMax = milieu;
+            start = milieu+1;
+        }
+    }
+
 }
 
 int main(int argc, char *argv[])
