@@ -17,7 +17,15 @@ void HuffmanHeap::insertHeapNode(int heapSize, unsigned char c, int frequences)
       * Do Like Heap::insertHeapNode (exo1) but use HuffmanNode instead of
       * int, this->get(i): HuffmanNode*  <-> this->get(i).frequences
      **/
+
     int i = heapSize;
+    this->get(i).frequences = frequences;
+    this->get(i).character = c;
+
+    while(i>0 && this->get(i).frequences > this->get((i-1)/2).frequences){ // (i-1)/2 = au parent
+        this->swap(i, (i-1)/2);
+        i = ((i-1)/2);
+    }
 }
 
 void HuffmanNode::insertNode(HuffmanNode* node)
@@ -34,8 +42,19 @@ void HuffmanNode::insertNode(HuffmanNode* node)
          * fréquence devient la somme de ses nouveaux enfants et
          * son caractère devient '\0'
         **/
+
+
         HuffmanNode* copy = new HuffmanNode(this->character, this->frequences);
         this->character = '\0';
+        if(node->frequences < copy->frequences){
+            this->left = node;
+            this->right = copy;
+        }
+        else{
+            this->right = node;
+            this->left = copy;
+        }
+
     }
     else
     {
@@ -46,6 +65,13 @@ void HuffmanNode::insertNode(HuffmanNode* node)
          * Remarques: Si un noeud n'est pas une feuille alors ses deux enfants sont
          * non-null (grâce à la condition d'au-dessus)
         **/
+        if(3*node->frequences < this->frequences){
+            this->left->insertNode(node);
+        }
+        else{
+            this->right->insertNode(node);
+        }
+
     }
     /**
      * à chaque insertion on additionne au noeud courant la valeur
@@ -82,6 +108,11 @@ void charFrequences(string data, Array& frequences)
       * frequences is an array of 256 int. frequences[i]
       * is the frequence of the caracter with ASCII code i
      **/
+
+    for (int c = 0; c < data.size(); c++) {
+        frequences[int(data[c])]++;
+    }
+
 }
 
 void huffmanHeap(Array& frequences, HuffmanHeap& heap, int& heapSize)
@@ -91,6 +122,8 @@ void huffmanHeap(Array& frequences, HuffmanHeap& heap, int& heapSize)
       * Define heapSize as numbers of inserted nodes
      **/
     heapSize = 0;
+
+
 }
 
 void huffmanDict(HuffmanHeap& heap, int heapSize, HuffmanNode*& dict)
@@ -99,6 +132,12 @@ void huffmanDict(HuffmanHeap& heap, int heapSize, HuffmanNode*& dict)
       * For each value in heap, insert a new node in dict
      **/
     dict = new HuffmanNode(heap[0].character, heap[0].frequences);
+
+    for(int i = 0; i < heapSize; i++){
+        HuffmanNode* node = new HuffmanNode(heap[i].character, heap[i].frequences);
+        dict->insertNode(node);
+    }
+A VERIFIERRRRRRRRRRRRR
 }
 
 string huffmanEncode(HuffmanNode** characters, string toEncode)
