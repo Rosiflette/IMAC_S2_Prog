@@ -19,8 +19,8 @@ void HuffmanHeap::insertHeapNode(int heapSize, unsigned char c, int frequences)
      **/
 
     int i = heapSize;
-    this->get(i).frequences = frequences;
     this->get(i).character = c;
+    this->get(i).frequences = frequences;
 
     while(i>0 && this->get(i).frequences > this->get((i-1)/2).frequences){ // (i-1)/2 = au parent
         this->swap(i, (i-1)/2);
@@ -88,6 +88,21 @@ void HuffmanNode::processCodes(std::string baseCode)
       * child, add '0' to the baseCode and each time call the right
       * child, add '1'. If the node is a leaf, it takes the baseCode.
      **/
+
+    if(this->isLeaf()){
+        this->code = baseCode;
+    }
+    else{
+        if(this->left != nullptr){
+            this->left->processCodes(baseCode+ '0');
+        }
+        if(this->right != nullptr){
+            this->right->processCodes(baseCode+'1');
+        }
+    }
+
+
+
 }
 
 void HuffmanNode::fillCharactersArray(HuffmanNode** nodes_for_chars)
@@ -110,7 +125,7 @@ void charFrequences(string data, Array& frequences)
      **/
 
     for (int c = 0; c < data.size(); c++) {
-        frequences[int(data[c])]++;
+        frequences[(int)data[c]]++;
     }
 
 }
@@ -122,6 +137,13 @@ void huffmanHeap(Array& frequences, HuffmanHeap& heap, int& heapSize)
       * Define heapSize as numbers of inserted nodes
      **/
     heapSize = 0;
+    for(int i = 0; i < frequences.size(); i++){
+        if(frequences[i] != 0){
+            heap.insertHeapNode(heapSize, (char)i, frequences[i]);
+            heapSize++;
+        }
+
+    }
 
 
 }
@@ -133,11 +155,11 @@ void huffmanDict(HuffmanHeap& heap, int heapSize, HuffmanNode*& dict)
      **/
     dict = new HuffmanNode(heap[0].character, heap[0].frequences);
 
-    for(int i = 0; i < heapSize; i++){
+    for(int i = 1; i < heapSize; i++){
         HuffmanNode* node = new HuffmanNode(heap[i].character, heap[i].frequences);
         dict->insertNode(node);
     }
-A VERIFIERRRRRRRRRRRRR
+
 }
 
 string huffmanEncode(HuffmanNode** characters, string toEncode)
@@ -148,6 +170,11 @@ string huffmanEncode(HuffmanNode** characters, string toEncode)
       * character with the ASCII code i
      **/
     string encoded = "";
+
+    for(int c = 0; c < toEncode.size(); c++){
+        encoded += characters[(int)toEncode[c]]->code;
+    }
+
     return encoded;
 }
 
@@ -159,6 +186,22 @@ string huffmanDecode(HuffmanNode* dict, string toDecode)
       * the decoded character of this node.
      **/
     string decoded = "";
+    HuffmanNode* parcours = dict;
+
+    for(int c = 0; c < toDecode.size(); c++){
+
+        if(toDecode[c]=='0'){
+            parcours = parcours->left;
+        }
+        else{
+            parcours = parcours->right;
+        }
+        if(parcours->isLeaf()){
+            decoded += parcours->character;
+            parcours = dict;
+        }
+    }
+
     return decoded;
 }
 
