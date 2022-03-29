@@ -22,7 +22,7 @@ void HuffmanHeap::insertHeapNode(int heapSize, unsigned char c, int frequences)
     this->get(i).character = c;
     this->get(i).frequences = frequences;
 
-    while(i>0 && this->get(i).frequences > this->get((i-1)/2).frequences){ // (i-1)/2 = au parent
+    while(i>0 && this->get(i).frequences < this->get((i-1)/2).frequences){ // (i-1)/2 = au parent
         this->swap(i, (i-1)/2);
         i = ((i-1)/2);
     }
