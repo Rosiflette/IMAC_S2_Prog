@@ -1,7 +1,6 @@
 #include "tp6.h"
 #include <QApplication>
 #include <time.h>
-
 MainWindow* w = nullptr;
 
 void Graph::buildFromAdjenciesMatrix(int **adjacencies, int nodeCount)
