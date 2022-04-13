@@ -9,6 +9,7 @@ MainWindow* w = nullptr;
 using std::size_t;
 using std::string;
 
+
 int Heap::leftChild(int nodeIndex)
 {
     return 2*nodeIndex+1;
@@ -22,8 +23,8 @@ int Heap::rightChild(int nodeIndex)
 
 void Heap::insertHeapNode(int heapSize, int value)
 {
-	// use (*this)[i] or this->get(i) to get a value at index i
-	int i = heapSize;
+    // use (*this)[i] or this->get(i) to get a value at index i
+    int i = heapSize;
     (*this)[i] = value;
 
     while(i>0 && this->get(i) > this->get((i-1)/2)){ // (i-1)/2 = au parent
@@ -34,7 +35,7 @@ void Heap::insertHeapNode(int heapSize, int value)
 
 void Heap::heapify(int heapSize, int nodeIndex)
 {
-	// use (*this)[i] or this->get(i) to get a value at index i
+    // use (*this)[i] or this->get(i) to get a value at index i
     int i_max = nodeIndex;
     if(this->leftChild(nodeIndex) < heapSize && this->get(i_max) < this->get(this->leftChild(nodeIndex))){
         i_max = this->leftChild(nodeIndex);
@@ -69,10 +70,10 @@ void Heap::heapSort()
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow::instruction_duration = 50;
     w = new HeapWindow();
-	w->show();
+    w->show();
 
-	return a.exec();
+    return a.exec();
 }

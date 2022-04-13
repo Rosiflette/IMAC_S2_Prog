@@ -65,10 +65,10 @@ bool HashTable::contains(std::string element)
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	MainWindow::instruction_duration = 10;
-	w = new HashWindow();
-	w->show();
+    QApplication a(argc, argv);
+    MainWindow::instruction_duration = 10;
+    w = new HashWindow();
+    w->show();
 
-	return a.exec();
+    return a.exec();
 }

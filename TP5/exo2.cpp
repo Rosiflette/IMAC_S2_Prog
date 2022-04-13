@@ -61,19 +61,23 @@ struct MapNode : public BinaryTree
      */
     void insertNode(MapNode* node)
     {
-        if(node->value > this->value && this->right != nullptr){
-            this->right->insertNode(node);
-        }
-        else if(node->value < this->value && this->left != nullptr){
-            this->left->insertNode(node);
-        }
-
-        else if(node->value > this->value){
-            this->right = node;
+        if(node->key_hash > this->key_hash){
+            if(this->right == nullptr){
+                this->right = node;
+            }
+            else{
+                this->right->insertNode(node);
+            }
         }
         else{
-            this->left = node;
+            if(this->left == nullptr){
+                this->left = node;
+            }
+            else{
+                this->left->insertNode(node);
+            }
         }
+
 
     }
 
@@ -145,7 +149,7 @@ struct Map
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
-	Map map;
+    Map map;
 
     map.insert("Yolo", 20);
     for (std::string& name : TP5::names)
